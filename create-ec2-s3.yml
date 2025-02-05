@@ -66,8 +66,8 @@
          tags:
            Name: MyTargetEc2Instance1
      - name: Task #4 Create S3
-       local_action:  s3
+       amazon.aws.s3.bucket:
                       name: {{ s3_name }} 
                       state: {{s3_state}}
-       register: s3
+       register: created_bucket
 
