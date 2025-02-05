@@ -14,6 +14,8 @@
      count: 1
      region: us-east-1
      security_group: ec2-security-group    
+     s3_name: mybucket453453453453342222444
+     s3_state: present
      ansible_python_interpreter: /usr/bin/python3
      interpreter_python: /usr/bin/python3
    
@@ -63,7 +65,9 @@
        args:
          tags:
            Name: MyTargetEc2Instance1
+     - name: Task #4 Create S3
+       local_action:  s3
+                      name: {{ s3_name }} 
+                      state: {{s3_state}}
+       register: s3
 
-    - amazon.aws.s3_bucket:
-      name: mys3bucket2024535435435345r34
-      state: present
