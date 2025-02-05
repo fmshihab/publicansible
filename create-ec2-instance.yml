@@ -13,8 +13,9 @@
      group: myserver
      count: 1
      region: us-east-1
-     security_group: ec2-security-group
-     ansible_python_interpreter: /usr/local/bin/python2.7.17
+     security_group: ec2-security-group    
+     ansible_python_interpreter: /usr/bin/python2.7
+     interpreter_python: /usr/bin/python2.7
    
    tasks:
 
