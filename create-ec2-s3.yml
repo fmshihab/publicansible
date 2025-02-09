@@ -14,8 +14,8 @@
      count: 1
      region: us-east-1
      security_group: ec2-security-group  
-     ansible_python_interpreter: /usr/bin/python
-     interpreter_python: /usr/bin/python
+     ansible_python_interpreter: /usr/bin/python2
+     interpreter_python: /usr/bin/python2
 
      
    
