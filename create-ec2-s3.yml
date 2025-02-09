@@ -67,6 +67,6 @@
            Name: MyTargetEc2Instance1
      - name: Task # 4 Create S3
        amazon.aws.s3.bucket:
-         name:anynameisfijne332432432
+         name: anynameisfijne332432432
          state: present      
 
