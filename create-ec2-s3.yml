@@ -12,7 +12,7 @@
      wait: yes
      group: myserver
      count: 1
-     region: us-east-1
+     region: ap-southeast-2
      security_group: ec2-security-group    
      s3_name: mybucket453453453453342222444
      s3_state: present
@@ -65,8 +65,8 @@
        args:
          tags:
            Name: MyTargetEc2Instance1
-     - name: Task #4 Create S3
+     - name: Task # 4 Create S3
        amazon.aws.s3.bucket:
-         name={{ s3_name }} 
-         state={{s3_state}}      
+         name:anynameisfijne332432432
+         state: present      
 
