@@ -66,7 +66,6 @@
          tags:
            Name: MyTargetEc2Instance1
      - name: Task #4 Create S3
-       amazon.aws.s3.bucket:
-                      name={{ s3_name }} 
-                      state={{s3_state}}
-       register: created_bucket
+       amazon.aws.s3_bucket:
+                      name: koikidsfdsfdsfdsf 
+                      state: present
