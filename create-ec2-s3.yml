@@ -16,8 +16,8 @@
      security_group: ec2-security-group    
      s3_name: mybucket453453453453342222444
      s3_state: present
-     ansible_python_interpreter: /usr/bin/python3.10
-     interpreter_python: /usr/bin/python3.10
+     ansible_python_interpreter: /usr/bin/python3
+     interpreter_python: /usr/bin/python3
      
    
    tasks:
