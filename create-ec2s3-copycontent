@@ -66,35 +66,17 @@
           Name: MyTargetEc2Instance1
       loop: "{{ ec2.instances }}"
 
-    - name: Create the S3 bucket
-      amazon.aws.s3_bucket:
-        name: "{{ bucket_name }}"
-        region: "{{ region }}"
-        state: present
-      register: s3_result
-
-    - name: Show S3 bucket creation result
-      debug:
-        var: s3_result
-
-	- name: Copy file from S3 to EC2
-	  hosts: ec2
-	  become: yes
-	  vars:
-		ansible_python_interpreter: /usr/bin/python3  # or your virtualenv path
-	  tasks:
-		- name: Ensure boto libs are available
-		  pip:
-			name:
-			  - boto3
-			  - botocore
-			executable: pip3
-
-		- name: Download file from S3 to EC2
-		  amazon.aws.aws_s3:
-			bucket: my-ansible-bucket-19may2025-0829
-			object: path/in/s3/test.txt
-			dest: /tmp/test
-			mode: get
-			overwrite: yes
-		  register: s3_result
+   - name: Copy file from S3 to EC2
+     hosts: ec2
+     become: yes
+     vars:
+	ansible_python_interpreter: /usr/bin/python3  # or your virtualenv path
+     tasks:
+      - name: Download file from S3 to EC2
+	amazon.aws.aws_s3:
+	 bucket: my-ansible-bucket-19may2025-0807
+	 object: path/in/s3/test.txt
+	 dest: /tmp/test
+	 mode: get
+	 overwrite: yes
+	register: s3_result
