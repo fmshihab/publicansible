@@ -13,6 +13,7 @@
     group: myserver
     count: 1
     region: ap-southeast-2
+    bucket_name: my-ansible-bucket-19may2025-0807
     security_group: ec2-security-group
     ansible_python_interpreter: /usr/bin/python3  # Adjust as needed
     interpreter_python: /usr/bin/python3
@@ -64,3 +65,14 @@
         tags:
           Name: MyTargetEc2Instance1
       loop: "{{ ec2.instances }}"
+
+    - name: Create the S3 bucket
+      amazon.aws.s3_bucket:
+        name: "{{ bucket_name }}"
+        region: "{{ aws_region }}"
+        state: present
+      register: s3_result
+
+    - name: Show S3 bucket creation result
+      debug:
+        var: s3_result
