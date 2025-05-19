@@ -80,13 +80,6 @@
     ansible_python_interpreter: /usr/bin/python3  # or virtualenv python
 
   tasks:
-    - name: Ensure boto libraries are available
-      pip:
-        name:
-          - boto3
-          - botocore
-        executable: pip3
-
     - name: Download file from S3 to EC2
       amazon.aws.aws_s3:
         bucket: "{{ bucket_name }}"
