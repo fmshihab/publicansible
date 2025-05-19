@@ -73,7 +73,7 @@
 
 
 - name: Copy file from S3 to EC2
-  hosts: launched
+  hosts: MyTargetEc2Instance1
   become: yes
   gather_facts: false
   vars:
