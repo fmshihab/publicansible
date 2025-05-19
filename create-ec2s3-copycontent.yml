@@ -82,7 +82,7 @@
   tasks:
     - name: Download file from S3 to EC2
       amazon.aws.aws_s3:
-        bucket: "{{ bucket_name }}"
+        bucket: my-ansible-bucket-19may2025-0807
         object: path/in/s3/test.txt
         dest: /tmp/test.txt
         mode: get
