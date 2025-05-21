@@ -13,6 +13,7 @@
     group: myserver
     count: 1
     region: ap-southeast-2
+    subnet_id: subnet-0202bcf8ba232706c
     bucket_name: my-ansible-bucket-19may2025-0807
     security_group: ec2-security-group
     ansible_python_interpreter: /usr/bin/python3  # Adjust as needed
@@ -51,6 +52,7 @@
         instance_type: "{{ instance_type }}"
         image_id: "{{ image }}"
         region: "{{ region }}"
+        vpc_subnet_id: "{{ subnet_id }}"
         count: "{{ count }}"
         wait: "{{ wait }}"
         security_groups: ["{{ security_group }}"]
