@@ -69,11 +69,11 @@
           Name: MyTargetEc2Instance1
       loop: "{{ ec2.instances }}"
 
-    - name: Add new instance to dynamic inventory group
-      add_host:
-        name: "{{ item.public_dns_name }}"
-        groups: launched
-      loop: "{{ ec2.instances }}"
+   # - name: Add new instance to dynamic inventory group
+      #add_host:
+        #name: "{{ item.public_dns_name }}"
+        #groups: launched
+      #loop: "{{ ec2.instances }}"
 
 
 - name: Copy file from S3 to EC2
