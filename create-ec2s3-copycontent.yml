@@ -77,7 +77,7 @@
 
 
     - name: Copy file from S3 to EC2
-      hosts: ec2
+      hosts: MyTargetEc2Instance1
       become: false
       tasks:
         - name: Download file from S3
