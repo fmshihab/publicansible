@@ -19,25 +19,6 @@ Parameters:
     ConstraintDescription: must be a valid EC2 instance type.
 
 Resources:
-  HttpdInstance:
-    Type: AWS::EC2::Instance
-    Properties:
-      InstanceType: t2.micro
-      KeyName: key24
-      ImageId: ami-0fc5d935ebf8bc3bc  # Ubuntu 22.04 LTS (us-east-1 region — update if needed)
-      Tags:
-        - Key: Name
-          Value: httpd
-      SecurityGroups:
-        - !Ref HttpdSecurityGroup
-      UserData:
-        Fn::Base64: !Sub |
-          #!/bin/bash
-          apt update -y
-          apt install -y apache2
-          systemctl start apache2
-          systemctl enable apache2
-
   HttpdSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -51,3 +32,23 @@ Resources:
           FromPort: 80
           ToPort: 80
           CidrIp: 0.0.0.0/0
+  HttpdInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      KeyName: key24
+      ImageId: ami-0fc5d935ebf8bc3bc  # Ubuntu 22.04 LTS (us-east-1 region — update if needed)
+      Tags:
+        - Key: Name
+          Value: httpd
+      SecurityGroups:
+        - HttpdSecurityGroup
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          apt update -y
+          apt install -y apache2
+          systemctl start apache2
+          systemctl enable apache2
+
+
