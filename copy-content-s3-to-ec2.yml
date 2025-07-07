@@ -1,10 +1,9 @@
-- name: Copy file from S3 to EC2
-  hosts: MyTargetEc2Instance1
+- name: Copy test.txt from S3 to EC2 instance
+  hosts: jenkins
   become: false
-  gather_facts: false
-  vars:
-    ansible_python_interpreter: /usr/bin/python3  # or virtualenv python
-  
   tasks:
-   - name: Download file from S3
-     shell: aws s3 cp s3://my-ansible-bucket-19may2025-0807/tmp/test.txt /tmp/test.txt;scp -i /home/ubuntu/key24.pem /tmp/test.txt ubuntu@10.2.1.21:/home/ubuntu/
+
+    - name: Copy file from S3 to local jenkins
+      shell: aws s3 cp s3://my-ansible-bucket-19may2025-0807/test.txt /home/ubuntu/test.txt
+    - name: Copy file from local jenkins to remote host
+      shell: scp -i /home/ubuntu/key24.pem /home/ubuntu/test.txt ubuntu@10.2.1.243:/home/ubuntu/
