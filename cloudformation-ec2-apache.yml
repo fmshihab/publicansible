@@ -20,7 +20,7 @@ Resources:
     Properties:
       InstanceType: t2.micro
       KeyName: key24
-      ImageId: ami-0fc5d935ebf8bc3bc  # Ubuntu 22.04 LTS (us-east-1 region — update if needed)
+      ImageId: ami-0f5d1713c9af4fe30  # Ubuntu 22.04 LTS (us-east-1 region — update if needed)
       Tags:
         - Key: Name
           Value: httpd
