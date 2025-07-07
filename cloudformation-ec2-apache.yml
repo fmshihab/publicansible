@@ -5,6 +5,7 @@ Parameters:
   KeyName:
     Description: Name of an existing EC2 KeyPair to SSH into the instance
     Type: AWS::EC2::KeyPair::KeyName
+    Default: key24
 
   InstanceType:
     Description: EC2 instance type
@@ -23,7 +24,6 @@ Resources:
     Properties:
       InstanceType: !Ref InstanceType
       KeyName: !Ref KeyName
-      Default: key24
       ImageId: ami-0fc5d935ebf8bc3bc  # Ubuntu 22.04 LTS (us-east-1 region — update if needed)
       Tags:
         - Key: Name
