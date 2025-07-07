@@ -1,23 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Launch Ubuntu EC2 with Apache HTTPD installed
 
-Parameters:
-  KeyName:
-    Description: Name of an existing EC2 KeyPair to SSH into the instance
-    Type: AWS::EC2::KeyPair::KeyName
-    Default: key24
-
-  InstanceType:
-    Description: EC2 instance type
-    Type: String
-    Default: t2.micro
-    AllowedValues:
-      - t2.micro
-      - t2.small
-      - t3.micro
-      - t3.small
-    ConstraintDescription: must be a valid EC2 instance type.
-
 Resources:
   HttpdSecurityGroup:
     Type: AWS::EC2::SecurityGroup
