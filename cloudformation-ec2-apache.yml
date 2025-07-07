@@ -1,6 +1,23 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Launch Ubuntu EC2 with Apache HTTPD installed
 
+Parameters:
+  KeyName:
+    Description: Name of an existing EC2 KeyPair to SSH into the instance
+    Type: AWS::EC2::KeyPair::KeyName
+    Default: key24
+
+  InstanceType:
+    Description: EC2 instance type
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+      - t2.micro
+      - t2.small
+      - t3.micro
+      - t3.small
+    ConstraintDescription: must be a valid EC2 instance type.
+
 Resources:
   HttpdSecurityGroup:
     Type: AWS::EC2::SecurityGroup
@@ -15,14 +32,32 @@ Resources:
           FromPort: 80
           ToPort: 80
           CidrIp: 0.0.0.0/0
+
   HttpdInstance:
     Type: AWS::EC2::Instance
     Properties:
-      InstanceType: t2.micro
-      KeyName: key24
-      ImageId: ami-0f5d1713c9af4fe30  # Ubuntu 22.04 LTS (us-east-1 region — update if needed)
+      InstanceType: !Ref InstanceType
+      KeyName: !Ref KeyName
+      ImageId: ami-0fc5d935ebf8bc3bc  # Ubuntu 22.04 LTS (us-east-1)
       Tags:
         - Key: Name
           Value: httpd
       SecurityGroups:
-        - HttpdSecurityGroup
+        - !Ref HttpdSecurityGroup
+      UserData:
+        Fn::Base64:
+          Fn::Sub: |
+            #!/bin/bash
+            apt update -y
+            apt install -y apache2
+            systemctl start apache2
+            systemctl enable apache2
+
+Outputs:
+  InstancePublicIP:
+    Description: Public IP of the EC2 instance
+    Value: !GetAtt HttpdInstance.PublicIp
+
+  WebURL:
+    Description: Apache web URL
+    Value: !Sub "http://${HttpdInstance.PublicDnsName}"
