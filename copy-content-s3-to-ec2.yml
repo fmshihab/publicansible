@@ -1,0 +1,10 @@
+- name: Copy file from S3 to EC2
+  hosts: MyTargetEc2Instance1
+  become: false
+  gather_facts: false
+  vars:
+    ansible_python_interpreter: /usr/bin/python3  # or virtualenv python
+  
+  tasks:
+   - name: Download file from S3
+     shell: aws s3 cp s3://my-ansible-bucket-19may2025-0807/tmp/test.txt /tmp/test.txt;scp -i /home/ubuntu/key24.pem /tmp/test.txt ubuntu@10.2.1.21:/home/ubuntu/
