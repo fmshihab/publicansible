@@ -6,7 +6,7 @@
   tasks:
     - name: Launch CloudFormation stack
       cloudformation:
-        stack_name: ansible-cf-stack-s3
+        stack_name: ansible-cf-stack-ec2
         state: present
         template: cloudformation-ec2-apache.yml
         region: ap-southeast-2
