@@ -22,8 +22,8 @@ Resources:
   HttpdInstance:
     Type: AWS::EC2::Instance
     Properties:
-      InstanceType: !Ref InstanceType
-      KeyName: !Ref KeyName
+      InstanceType: t2.micro
+      KeyName: key24
       ImageId: ami-0fc5d935ebf8bc3bc  # Ubuntu 22.04 LTS (us-east-1 region — update if needed)
       Tags:
         - Key: Name
