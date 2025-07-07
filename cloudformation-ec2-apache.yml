@@ -56,6 +56,3 @@ Outputs:
   InstancePublicIP:
     Description: Public IP address of the EC2 instance
     Value: !GetAtt HttpdInstance.PublicIp
-  WebURL:
-    Description: Apache web URL
-    Value: !Sub "http://${HttpdInstance.PublicDnsName}"
