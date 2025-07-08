@@ -11,9 +11,8 @@ Parameters:
     Default: vpc-0b3c34c4ea9640f9e
     Description: VPC Name
   SubnetName:
-    Type: String
-    Default: subnet-0202bcf8ba232706c
-    Description: Subnet Name
+    Type: AWS::EC2::Subnet::Id
+    Default: subnet-0202bcf8ba232706c    
 
 Resources:
 
