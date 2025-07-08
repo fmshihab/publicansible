@@ -140,12 +140,15 @@ Resources:
             #!/bin/bash
             yum update -y
             yum install -y httpd aws-cli
+            sleep 10
             yum install -y httpd git
+            sleep 20
             systemctl enable httpd
             systemctl start httpd
             cd /tmp
             git clone https://github.com/salemandreus/SimpleSite.git
             cp -r /tmp/SimpleSite/* /var/www/html/
+            chown -R apache:apache /var/www/html
             
   LoadBalancer:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
