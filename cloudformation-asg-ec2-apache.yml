@@ -6,6 +6,14 @@ Parameters:
     Type: String
     Default: t2.micro
     Description: EC2 instance type
+  VPCName:
+    Type: String
+    Default: vpc-0b3c34c4ea9640f9e
+    Description: VPC Name
+  SubnetName:
+    Type: String
+    Default: subnet-0202bcf8ba232706c
+    Description: Subnet Name
 
 Resources:
 
@@ -13,7 +21,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Allow HTTP access
-      VpcId: !Ref VPC  # If you're not using a custom VPC, remove this line
+      VpcId: !Ref VPCName  # If you're not using a custom VPC, remove this line
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 80
@@ -41,8 +49,7 @@ Resources:
   AutoScalingGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
-      VPCZoneIdentifier:
-        - subnet-0202bcf8ba232706c  # Replace with your actual public subnet IDs
+      VPCZoneIdentifier: !Ref SubnetName
       LaunchTemplate:
         LaunchTemplateId: !Ref LaunchTemplate
         Version: !GetAtt LaunchTemplate.LatestVersionNumber
