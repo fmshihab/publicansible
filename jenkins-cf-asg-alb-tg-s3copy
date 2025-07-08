@@ -15,7 +15,7 @@ pipeline {
                 sh "pip install boto3 botocore"
                 // execute ansible playbook
                 sshagent(['key24.pem']) {
-                ansiblePlaybook playbook: 'ansiblePlaybook/deploy-cloudformation-stack-alb-tg-s3copy.yml'
+                template: "AnsiblePlaybook/deploy-cloudformation-stack-alb-tg-s3copy.yml"
                 }
             }
         }
