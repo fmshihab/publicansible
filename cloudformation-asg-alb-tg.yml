@@ -6,6 +6,14 @@ Parameters:
     Type: String
     Default: t2.micro
     Description: EC2 instance type
+  AZa:
+    Type: AWS::EC2::AvailabilityZone::Name
+    Description: First Availability Zone
+    Default: ap-southeast-2a
+  AZb:
+    Type: AWS::EC2::AvailabilityZone::Name
+    Description: Second Availability Zone
+    Default: ap-southeast-2b
 
 Resources:
 
@@ -34,6 +42,7 @@ Resources:
       VpcId: !Ref VPC
       CidrBlock: 10.0.1.0/24
       MapPublicIpOnLaunch: true
+      AvailabilityZone: !Ref AZa
 
   PublicSubnet2:
     Type: AWS::EC2::Subnet
@@ -41,6 +50,7 @@ Resources:
       VpcId: !Ref VPC
       CidrBlock: 10.0.3.0/24
       MapPublicIpOnLaunch: true
+      AvailabilityZone: !Ref AZb
 
   RouteTable:
     Type: AWS::EC2::RouteTable
