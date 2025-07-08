@@ -4,10 +4,13 @@ Description: Run Nginx on ECS Fargate with Load Balancer
 Parameters:
   VpcId:
     Type: AWS::EC2::VPC::Id
+    default: vpc-0b3c34c4ea9640f9e
   Subnet1:
     Type: AWS::EC2::Subnet::Id
+    default: subnet-0202bcf8ba232706c
   Subnet2:
     Type: AWS::EC2::Subnet::Id
+    default: subnet-032755fb769e7fa11
 
 Resources:
 
