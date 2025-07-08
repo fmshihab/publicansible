@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+        
+        stage ("checkout") {
+            steps {
+                        checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/fmshihab/publicansible.git']])         
+            }
+        }
+        stage('execute') {
+            steps {
+                //to suppress warnings when you execute playbook    
+                sh "pip install --upgrade requests==2.20.1"
+                sh "pip install boto3 botocore"
+                // execute ansible playbook
+                sshagent(['key24.pem']) {
+                ansiblePlaybook playbook: 'deploy-cloudformation-stack-alb-tg.yml'
+                }
+            }
+        }
+    }
+}
