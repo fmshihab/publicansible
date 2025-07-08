@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+	
+	environment {
+    // Define where the playbooks are located
+    PLAYBOOK_DIR = "${WORKSPACE}/AnsiblePlaybook"
+  }
+
+    stages {
+        
+        stage ("checkout") {
+            steps {
+                        checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/fmshihab/publicansible.git']])       
+            }
+        }
+        stage('execute') {
+            steps {
+                //to suppress warnings when you execute playbook    
+                sh "pip install --upgrade requests==2.20.1"
+                sh "pip install boto3 botocore"
+                // execute ansible playbook
+                dir("${PLAYBOOK_DIR}") {
+                ansiblePlaybook playbook: "deploy-cloudformation-stack-ecs-nginx.yml"
+                }
+            }
+        }
+    }
+}
