@@ -140,6 +140,7 @@ Resources:
             #!/bin/bash
             yum update -y
             yum install -y httpd aws-cli
+            yum install -y httpd git
             systemctl enable httpd
             systemctl start httpd
             cd /tmp
