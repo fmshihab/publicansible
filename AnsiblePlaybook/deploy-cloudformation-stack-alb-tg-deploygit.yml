@@ -6,7 +6,7 @@
   tasks:
     - name: Launch CloudFormation stack
       cloudformation:
-        stack_name: ansible-cloudformation-asg-alb-tg-s3copy
+        stack_name: ansible-cloudformation-asg-alb-tg-deploygit
         state: present
         template_body: "{{ lookup('file', '../CloudformationTemplate/cloudformation-asg-alb-tg-deploygit.yml') }}"
         region: ap-southeast-2
