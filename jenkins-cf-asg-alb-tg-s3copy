@@ -20,7 +20,7 @@ pipeline {
                 sh "pip install boto3 botocore"
                 // execute ansible playbook
                 dir("${PLAYBOOK_DIR}") {
-                template: "deploy-cloudformation-stack-alb-tg-s3copy.yml"
+                ansiblePlaybook playbook: "deploy-cloudformation-stack-alb-tg-s3copy.yml"
                 }
             }
         }
