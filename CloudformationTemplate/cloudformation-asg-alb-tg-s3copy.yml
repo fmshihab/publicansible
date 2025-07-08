@@ -14,6 +14,11 @@ Parameters:
     Type: AWS::EC2::AvailabilityZone::Name
     Description: Second Availability Zone
     Default: ap-southeast-2b
+  KeyName:
+    Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
+    Type: AWS::EC2::KeyPair::KeyName
+    Default: key24
+    ConstraintDescription: must be the name of an existing EC2 KeyPair.
 
 Resources:
 
@@ -97,6 +102,7 @@ Resources:
         SecurityGroupIds:
           - !Ref WebSecurityGroup
         ImageId: ami-078772dab3242ee11
+        KeyName: !Ref 'KeyName'
         UserData:
           Fn::Base64: |
             #!/bin/bash
