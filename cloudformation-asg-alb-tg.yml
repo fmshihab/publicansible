@@ -96,7 +96,7 @@ Resources:
         InstanceType: !Ref InstanceType
         SecurityGroupIds:
           - !Ref WebSecurityGroup
-        ImageId: ami-0f5d1713c9af4fe30
+        ImageId: ami-078772dab3242ee11
         UserData:
           Fn::Base64: |
             #!/bin/bash
