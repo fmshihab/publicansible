@@ -104,7 +104,7 @@ Resources:
             yum install -y httpd
             systemctl enable httpd
             systemctl start httpd
-            echo "Hello from Auto Scaling Group" > /var/www/html/index.html
+            aws s3 cp s3://my-ansible-bucket-19may2025-0807/index.html /var/www/html/index.html
 
   LoadBalancer:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
