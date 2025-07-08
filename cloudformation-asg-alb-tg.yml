@@ -96,7 +96,7 @@ Resources:
         InstanceType: !Ref InstanceType
         SecurityGroupIds:
           - !Ref WebSecurityGroup
-        ImageId: ami-0c55b159cbfafe1f0 # Amazon Linux 2 (verify region)
+        ImageId: ami-0f5d1713c9af4fe30
         UserData:
           Fn::Base64: |
             #!/bin/bash
