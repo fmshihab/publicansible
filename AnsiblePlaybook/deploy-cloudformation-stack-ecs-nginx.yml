@@ -6,7 +6,7 @@
   tasks:
     - name: Launch CloudFormation stack
       cloudformation:
-        stack_name: ansible-cloudformation-asg-alb-tg-deploygit
+        stack_name: ansible-cloudformation-ecs-nginx
         state: present
         template_body: "{{ lookup('file', '../CloudformationTemplate/cloudformation-ecs-nginx.yml') }}"
         region: ap-southeast-2
