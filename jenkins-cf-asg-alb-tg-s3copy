@@ -1,11 +1,16 @@
 pipeline {
     agent any
+	
+	environment {
+    // Define where the playbooks are located
+    PLAYBOOK_DIR = "${WORKSPACE}/AnsiblePlaybook"
+  }
 
     stages {
         
         stage ("checkout") {
             steps {
-                        checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/fmshihab/publicansible.git']])         
+                        checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/fmshihab/publicansible.git']])       
             }
         }
         stage('execute') {
@@ -14,8 +19,8 @@ pipeline {
                 sh "pip install --upgrade requests==2.20.1"
                 sh "pip install boto3 botocore"
                 // execute ansible playbook
-                sshagent(['key24.pem']) {
-                template: "AnsiblePlaybook/deploy-cloudformation-stack-alb-tg-s3copy.yml"
+                dir("${PLAYBOOK_DIR}") {
+                template: "deploy-cloudformation-stack-alb-tg-s3copy.yml"
                 }
             }
         }
